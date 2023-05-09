@@ -1,0 +1,5 @@
+﻿  loudnessxmm.cpp
+C:\Users\Admin\Desktop\ETGG4804\SSE Junk\Wave.h(93,24): warning C4244: 'initializing': conversion from 'std::streamoff' to 'size_t', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\SSE Junk\loudnessxmm.cpp(11,30): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\SSE Junk\loudnessxmm.cpp(12,24): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  SSE.vcxproj -> C:\Users\Admin\Desktop\ETGG4804\SSE\Debug\SSE.exe
