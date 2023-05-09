@@ -1,0 +1,38 @@
+﻿  main.cpp
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1180,26): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1193,50): warning C4305:  'argument': truncation from 'double' to 'T'
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1193,50): warning C4305:         with
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1193,50): warning C4305:         [
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1193,50): warning C4305:             T=float
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1193,50): warning C4305:         ]
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1257,22): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1267,50): warning C4305:  'argument': truncation from 'double' to 'T'
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1267,50): warning C4305:         with
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1267,50): warning C4305:         [
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1267,50): warning C4305:             T=float
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1267,50): warning C4305:         ]
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1322,22): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1329,40): warning C4305:  'argument': truncation from 'double' to 'T'
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1329,40): warning C4305:         with
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1329,40): warning C4305:         [
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1329,40): warning C4305:             T=float
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(1329,40): warning C4305:         ]
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\Triangle.h(21,31): warning C4244:  '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\Camera.h(15,1): warning C4305:  '=': truncation from 'double' to 'float'
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\Camera.h(18,43): warning C4244:  '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\Image.h(44,29): warning C4244:  'argument': conversion from 'std::streamoff' to 'const unsigned int', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\traceRay.h(98,26): warning C4056:  overflow in floating-point constant arithmetic
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\main.cpp(35,17): warning C4244:  '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\main.cpp(43,13): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\main.cpp(44,14): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\main.cpp(45,14): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(510,1): warning C4244:  '=': conversion from 'double' to 'T', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(510,1): warning C4244:         with
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(510,1): warning C4244:         [
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(510,1): warning C4244:             T=float
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(510,1): warning C4244:         ]
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(510): message :  while compiling class template member function 'vec3Base<float> vec3Base<float>::operator *(double) const'
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(742): message :  see reference to function template instantiation 'vec3Base<float> vec3Base<float>::operator *(double) const' being compiled
+C:\Users\Admin\Desktop\ETGG4804\Raytracer\math3d.h(790): message :  see reference to class template instantiation 'vec3Base<float>' being compiled
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/PROFILE' specification
+  Raytracer (Visual Studio).vcxproj -> C:\Users\Admin\Desktop\ETGG4804\Raytracer\Debug\Raytracer (Visual Studio).exe
