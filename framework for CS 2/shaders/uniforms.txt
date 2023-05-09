@@ -1,0 +1,22 @@
+vec3 eyePos;
+vec3 cameraRight;
+vec3 cameraUp;
+vec3 cameraLook;
+
+mat4 worldMatrix;
+mat4 viewMatrix;
+mat4 projMatrix;
+
+vec3 lightPosition;
+vec3 lightColor;
+vec3 meshColor;
+
+//w,h,1/w,1/h
+vec4 screenSize;
+
+//for text
+vec3 textColor;
+vec2 textOrigin;
+vec2 charCellSize;
+vec2 numCharCells;
+

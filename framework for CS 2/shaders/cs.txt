@@ -1,0 +1,168 @@
+/*struct Sphere {
+	vec4 centerAndRadius;
+	vec4 color;
+};
+layout(std430,binding=0) buffer S {
+	Sphere spheres[];
+};*/
+
+struct GPUTriangle {
+	vec4 p[3];
+	vec4 e[3];
+	vec4 N;
+	float D;
+	float oneOverTwiceArea;
+	vec4 color;
+};
+layout(std430,binding=1) buffer S {
+	GPUTriangle triangles[];
+};
+
+layout(local_size_x=64,local_size_y=1,local_size_z=1) in;
+layout(binding=0,rgba8) uniform image2DArray img;
+
+vec3 reflect(vec3 x, vec3 y)
+{
+	float dp = dot(x, y);
+	vec3 z = dp * y;
+	return z + (z - x);
+}
+
+vec3 shadePixel(in vec3 ip, in vec3 N, in vec3 color)
+{
+    vec3 L = normalize(lightPosition - ip);
+    float dp = dot(L,N);
+    float sp;
+    if( dp < 0 ){
+        dp = 0.0;
+        sp=0.0;
+    } else {
+        vec3 V = normalize(eyePos - ip);
+		vec3 R = reflect(L, N);
+		sp = dot(V, R);
+        if( sp < 0 )
+            sp = 0.0;
+        sp = pow(sp, 16.0 );
+    }
+    return dp * color + vec3(sp,sp,sp);
+}
+
+/*bool traceSpheres(vec3 s, vec3 v, vec3 ip, vec3 N, vec3 color)
+{
+	float closestT = 1000.0f;
+    int ci= -1;
+    for(int i = 0; i < spheres.length();++i)
+    {
+        Sphere sph = spheres[i];
+        vec3 q = s - sph.centerAndRadius[0];
+		float t;
+
+        float A = dot(v, v);
+        float B = 2 * dot(q, v);
+        float C = dot(q, q) - pow(sph.centerAndRadius[1], 2);
+
+        float t1 = (-B + sqrt(pow(B, 2) - 4 * A * C)) / (2 * A);
+        float t2 = (-B - sqrt(pow(B, 2) - 4 * A * C)) / (2 * A);
+
+		if ((pow(B, 2) - 4 * A * C) < 0)
+			//discriminant is 0
+			continue;
+        if(t1 < 0 && t2 < 0)
+            //no intersection
+			continue;
+        else if(t1 < 0 && t2 >= 0)
+            t = t2;
+        else if(t1 >= 0 && t2 < 0)
+            t = t1;
+        //else if(t1 >= 0 && t2 >= 0)
+            //t = fmin(t1, t2);
+
+		if (t <= closestT)
+		{
+			closestT = t;
+			ci = i;
+		}
+    }
+
+    if( ci == -1 ){
+        return false;
+    }
+
+    ip = s + closestT * v;
+    N = normalize(ip - spheres[ci].centerAndRadius[0]);
+    color = spheres[ci].color;
+    return true;
+}*/
+
+
+bool traceTriangles(vec3 eyePos, vec3 rayDir, out vec3 ip, out vec3 N, out vec3 color)
+{
+	float closestT = 99999;	//why does it think everything is close enough to not intersect???
+	uint intersect = -1;
+
+	for(uint i=0;i<triangles.length();++i)
+	{
+		GPUTriangle T = triangles[i];
+			
+		//Find Triangles in Scene
+		if (dot(T.N.xyz, rayDir) == 0)
+		{
+			//no intersection
+			return false;
+		}
+
+		float t = -(T.D + dot(T.N.xyz, eyePos)) / dot(T.N.xyz, rayDir);
+		if(t < 0)
+			continue;
+		vec3 tmp_ip = eyePos + t * rayDir;
+			
+		//Barycentric coordinates
+		vec3 q[3];
+		float sum = 0.0;
+		for (uint i = 0; i < 3; i++)
+		{
+			q[i] = cross(T.e[i].xyz, (tmp_ip - T.p[i].xyz));
+		}
+		sum = length(q[0]) + length(q[1]) + length(q[2]);
+		float A = sum * T.oneOverTwiceArea;
+		if (A <= 1.001)
+		{
+			//intersection
+			if (t <= closestT)
+			{
+				intersect = i;
+				color = T.color.xyz;
+				N = T.N.xyz;
+				closestT = t;
+				ip = tmp_ip;
+			}
+		}
+	}
+
+	if(intersect == -1)
+		return false;
+
+	return true;
+}
+
+void main(){
+	ivec2 pixelCoord = ivec2(gl_GlobalInvocationID.xy);
+	ivec2 picSize = imageSize(img).xy;
+	float d = 1.0 / 0.69974612; //denom = tan(35 degrees) = field of view
+	float dy = 2.0/(picSize.y-1);
+	float dx = 2.0/(picSize.x-1);
+	float y = -1.0 + pixelCoord.y * dy;
+	float x = -1.0 + pixelCoord.x * dx;
+	vec3 rayDir = x*cameraRight + y*cameraUp + d*cameraLook;
+	bool wasIntersection;
+	vec3 ip, N, color;
+	//wasIntersection = traceSpheres(eyePos, rayDir, ip, N, color );
+	wasIntersection = traceTriangles(eyePos, rayDir, ip, N, color);
+	//vec3 rayDir 2 = lightPosition
+	if( !wasIntersection )
+		color = vec3(0,0,0);
+	else
+		color = shadePixel( ip, N, color );
+		//call traceTriangles again (ip, -rayDir (redo rayDir, from ip to lightPosition), ip, N, color)
+	imageStore(img, ivec3(pixelCoord,0), vec4(color,1.0) );
+}

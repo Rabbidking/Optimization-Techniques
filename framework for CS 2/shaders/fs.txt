@@ -1,0 +1,20 @@
+
+in vec3 v_normal;
+in vec3 v_worldPos;
+
+out vec4 color;
+
+void main(){
+    
+    vec3 L = normalize(lightPosition - v_worldPos);
+    vec3 N = normalize(v_normal);
+    vec3 V = normalize(eyePos-v_worldPos);
+    vec3 R = reflect(-L,N);
+    float dp = max( dot(L,N), 0.0 );
+    float sp = 0.0;
+    if( dp > 0.0 ){
+        sp = pow( max(0.0,dot(V,R)), 32.0);
+    }
+    color.rgb = dp * meshColor + vec3(sp);
+    color.a = 1.0;
+}
