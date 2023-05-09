@@ -1,0 +1,337 @@
+<HTML>
+<HEAD>
+
+<meta charset='utf-8'>
+
+<style id='xstyle'>
+</style>
+
+<BODY>
+    
+<table>
+<tr><td>Font:<td><input type=file id='fontfile' onchange='main()'>
+<tr><td>Style:
+<td><select id="style">
+    <option name="plain">Plain</option>
+    <option name="bold">Bold</option>
+    <option name="italic">Italic</option>
+    <option name="bold italic">Bold Italic</option>
+</select>
+<tr><td>Size:<td><input id="size" value="10" size=4 onchange='main()'>
+</table>
+
+X Padding:
+    <input id="paddingx" min=0 max=20 value=0 type=range onchange='main()'>
+Y Padding:
+    <input id="paddingy" min=0 max=20 value=0 type=range onchange='main()'>
+X offset:
+    <input id="deltax" min=0 max=20 value=0 type=range onchange='main()'>
+Y offset:
+    <input id="deltay" min=0 max=20 value=0 type=range onchange='main()'>
+<br>
+<!--
+    <label><input type='checkbox' id='grid' onchange='main()'>Show grid</label>
+<br>
+-->
+<button onclick="main()">Do it</button>
+<br>
+<textarea style='float:left' id='metrics' rows=15 cols=30></textarea>
+<canvas style='border: 2px solid fuchsia' id="cvs" width=2 height=2></canvas><br>
+
+<script>
+"use strict";
+
+var FIRST=32;
+var LAST=126;
+var NUM = LAST-FIRST+1;
+
+
+
+function main(){
+    var font = document.getElementById("fontfile");
+    font = font.files[0];
+    if(!font){
+        document.getElementById("metrics").value="No font file selected";
+        console.log("No font?");
+        return;
+    }
+    
+    var fr = new FileReader();
+    fr.onload = function(){
+        var fdata = fr.result;
+        var x = document.getElementById("xstyle");
+        if(!x){
+            console.log("No style");
+            return;
+        }
+            
+        var L=[
+          "@font-face{",
+          "  font-family: xPro;",
+          "  src: url('"+fdata+"');",
+        "}"]
+        x.innerHTML=L.join("\n");
+        var charmetrics = measure();
+        compute_image_size(charmetrics.maxw,charmetrics.maxh);
+        drawchars(charmetrics,
+            font.name+" "+
+            document.getElementById("size").value+" "+
+            document.getElementById("style").value+" "+
+            document.getElementById("paddingx").value+" "+
+            document.getElementById("paddingy").value+" "+
+            document.getElementById("deltax").value+" "+
+            document.getElementById("deltay").value
+        );
+    }
+    fr.readAsDataURL(font);
+}
+
+
+function set_font(){
+    var style= document.getElementById("style").value;
+    var size = parseInt(document.getElementById("size").value);
+    var family="xPro";
+    if( style === "Plain" )
+        style="";
+        
+    var cvs = document.getElementById("cvs");
+    var ctx = cvs.getContext("2d");
+    ctx.font = style+" "+size+"pt "+family;
+    console.log("Set font to ",ctx.font);
+}
+
+
+//measure widths and heights of characters. Return metrics.
+function measure(){
+    var cvs = document.getElementById("cvs");
+    var ctx = cvs.getContext("2d");
+    var ta = document.getElementById("metrics");
+    var paddingx = parseInt(document.getElementById("paddingx").value,10);
+    
+    var charmetrics=[];
+    
+    //we'd like to use measureText(), but it doesn't take into
+    //account pixels that go left of the character origin (ex: 'j')
+    
+    //measure all characters
+    //Draw all the characters to the canvas at location px,py
+    //Then see what the first and last rows are which have
+    //pixels rendered to them. This defines
+    //the max height of any character in the font.
+    //Do likewise for width.
+    var px = 100;
+    var py = 100;
+    
+    var size = parseInt(document.getElementById("size").value);
+    cvs.width = 2*px;
+    cvs.height = 2*py;
+    ctx.fillStyle="white";
+    set_font();
+
+    
+    for(var ch=FIRST;ch<=LAST;++ch){
+        charmetrics[ch]={};
+        
+        //space character is special
+        if( ch == 32 ){
+            charmetrics[ch].leftbearing = 0;
+            charmetrics[ch].rightbearing = ctx.measureText(" ").width;
+            charmetrics[ch].ascent= 1;
+            charmetrics[ch].descent=0;
+            continue;
+        }
+        
+        ctx.fillStyle="black";
+        ctx.clearRect(0,0,cvs.width,cvs.height);
+        ctx.fillStyle="white";
+        ctx.fillText(String.fromCharCode(ch),px,py);
+        
+        var id = ctx.getImageData(0,0,cvs.width,cvs.height);
+        
+        var i=0;
+        yloop1:
+        for(var y=0;y<cvs.height;y++){
+            var i = y*cvs.width*4;
+            for(var x=0;x<cvs.width;++x,i+=4){
+                if( id.data[i] != 0 ){
+                    charmetrics[ch].ascent = py-y+1;
+                    if(charmetrics[ch].ascent < 0 )
+                        charmetrics[ch].ascent = 0;
+
+                    break yloop1;
+                }
+            }
+        }
+        
+        if( charmetrics[ch].ascent === undefined ){
+            console.log("No ascent:",ch);
+        }
+          
+  
+        yloop2:
+        for(var y=cvs.height-1;y>=0;y--){
+            var i = y*cvs.width*4;
+            for(var x=0;x<cvs.width;++x,i+=4){
+                if( id.data[i] != 0 ){
+                    charmetrics[ch].descent = y-py+1;
+                    if( charmetrics[ch].descent < 0 )
+                        charmetrics[ch].descent = 0;
+                    break yloop2;
+                }
+            }
+        }
+        if( charmetrics[ch].descent === undefined )
+            console.log("No descent:",ch);
+            
+        xloop1:
+        for(var x=0;x<cvs.width;++x){
+            var i = x*4;
+            for(var y=0;y<cvs.height;++y,i+=cvs.width*4){
+                if( id.data[i] != 0 ){
+                    charmetrics[ch].leftbearing = px-x+1;
+                    break xloop1;
+                }
+            }
+        }
+        if( charmetrics[ch].leftbearing === undefined )
+            console.log("No left bearing:",ch);
+            
+        xloop2:
+        for(var x=cvs.width-1;x>=0;x--){
+            var i = x*4;
+            for(var y=0;y<cvs.height;++y,i+=cvs.width*4){
+                if( id.data[i] != 0 ){
+                    charmetrics[ch].rightbearing = x-px+1;
+                    break xloop2;
+                }
+            }
+        }
+        if( charmetrics[ch].rightbearing === undefined )
+            console.log("No right bearing:",ch);
+    }
+    
+    var maxw=-1;
+    var maxh=-1;
+    var maxascent=-1;
+    var maxdescent=-1;
+    
+    for(var i=FIRST;i<=LAST;++i){
+        charmetrics[i].width = charmetrics[i].rightbearing + charmetrics[i].leftbearing;
+        if(charmetrics[i].width>maxw)
+            maxw=charmetrics[i].width;
+        charmetrics[i].height = charmetrics[i].descent + charmetrics[i].ascent;
+        if( charmetrics[i].height > maxh )
+            maxh = charmetrics[i].height;
+        if( charmetrics[i].ascent > maxascent )
+            maxascent = charmetrics[i].maxascent;
+        if( charmetrics[i].descent > maxdescent )
+            maxdescent = charmetrics[i].maxdescent;
+    }
+    
+    maxw += parseInt(document.getElementById("paddingx").value,10); 
+    maxh += parseInt(document.getElementById("paddingy").value,10);
+    charmetrics.maxw=maxw;
+    charmetrics.maxh=maxh;
+    charmetrics.maxascent=maxascent;
+    charmetrics.maxdescent=maxdescent;
+    return charmetrics;
+}
+
+//try to determine an image which is:
+//  as small as possible
+//  can fit all the characters
+//  has dimensions that are a power of 2
+function compute_image_size(maxw,maxh){
+    var imgw = 32;
+    var imgh = 32;
+    while(1){
+        var ncpr = Math.floor(imgw / maxw);     //num chars per row
+        var nr = Math.floor((LAST-FIRST) / ncpr + 1);   //num rows required
+        var maxr = Math.floor(imgh / maxh);     //max rows we can fit
+        if( maxr < nr ){
+            if( imgw <= imgh )
+                imgw *= 2;
+            else
+                imgh *= 2;
+        }
+        else{
+            break;
+        }
+    }
+    
+    console.log("Computed image size:",imgw,imgh);
+    cvs.width = imgw;
+    cvs.height = imgh;
+}
+
+function drawchars(charmetrics,fontname){
+    
+    console.log("Draw chars");
+    set_font();
+
+    var cvs = document.getElementById("cvs");
+    var ctx=cvs.getContext("2d");
+    ctx.fillStyle="rgb(0,0,0)";
+    ctx.fillRect(0,0,cvs.width,cvs.height);
+    
+    
+    var deltax = parseInt(document.getElementById("deltax").value,10);
+    var deltay = parseInt(document.getElementById("deltay").value,10);
+    
+    ctx.fillStyle="rgb(255,255,255)"; 
+    ctx.textBaseline="top";
+    set_font();
+    var cx=0;
+    var cy=0;
+    for(var i=0;i<256;++i){
+        if( i >= FIRST && i <= LAST ){
+            
+            ctx.fillText( String.fromCharCode(i) , 
+                cx+deltax+charmetrics[i].leftbearing + (charmetrics.maxw - charmetrics[i].width)/2, 
+                cy+deltay );
+            charmetrics[i].x = cx;
+            charmetrics[i].y = cy;
+            cx += charmetrics.maxw;
+            if( cx + charmetrics.maxw >= cvs.width ){
+                cx=0;
+                cy+=charmetrics.maxh;
+            }
+        }
+    }
+    
+    var ta = document.getElementById("metrics");
+    var tmp = [];
+    tmp.push("#"+fontname);
+    tmp.push("maxw "+charmetrics.maxw);
+    tmp.push("maxh "+charmetrics.maxh);
+    for(var i=FIRST;i<LAST;++i){
+        tmp.push(""+i+
+            " "+charmetrics[i].x+
+            " "+charmetrics[i].y+
+            " "+charmetrics[i].width
+        );
+    }
+    ta.value = tmp.join("\n");
+    
+    //draw grid, if desired
+    if( true){ // document.getElementById("grid").checked){
+        ctx.globalCompositeOperation="screen";
+        ctx.strokeStyle = "rgb(0,128,0)";
+        for(var i=FIRST;i<=LAST;++i){
+            var x = charmetrics[i].x+(charmetrics.maxw - charmetrics[i].width)/2;
+            var y = charmetrics[i].y;
+            var w = charmetrics[i].width;
+            var h = charmetrics.maxh;
+            ctx.beginPath();
+            ctx.rect(x+0.5,y+0.5,w,h);
+            ctx.stroke();
+        }
+        ctx.globalCompositeOperation="source-over";
+    }    
+}
+
+</script>
+
+</BODY>
+</HEAD>
+</HTML>
