@@ -1,0 +1,24 @@
+﻿  main.cpp
+C:\Users\Admin\Desktop\ETGG4804\framework\Image.h(45,29): warning C4244:  'argument': conversion from 'std::streamoff' to 'const unsigned int', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\framework\Triangle.h(23,31): warning C4244:  '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\framework\Mesh.h(44,1): warning C4056:  overflow in floating-point constant arithmetic
+C:\Users\Admin\Desktop\ETGG4804\framework\Mesh.h(45,1): warning C4056:  overflow in floating-point constant arithmetic
+C:\Users\Admin\Desktop\ETGG4804\framework\main.cpp(31,47): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\framework\main.cpp(31,47): warning C4244:         with
+C:\Users\Admin\Desktop\ETGG4804\framework\main.cpp(31,47): warning C4244:         [
+C:\Users\Admin\Desktop\ETGG4804\framework\main.cpp(31,47): warning C4244:             T=float
+C:\Users\Admin\Desktop\ETGG4804\framework\main.cpp(31,47): warning C4244:         ]
+C:\Users\Admin\Desktop\ETGG4804\framework\main.cpp(31,44): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\framework\main.cpp(31,44): warning C4244:         with
+C:\Users\Admin\Desktop\ETGG4804\framework\main.cpp(31,44): warning C4244:         [
+C:\Users\Admin\Desktop\ETGG4804\framework\main.cpp(31,44): warning C4244:             T=float
+C:\Users\Admin\Desktop\ETGG4804\framework\main.cpp(31,44): warning C4244:         ]
+C:\Users\Admin\Desktop\ETGG4804\framework\math3d.h(510,1): warning C4244:  '=': conversion from 'double' to 'T', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\framework\math3d.h(510,1): warning C4244:         with
+C:\Users\Admin\Desktop\ETGG4804\framework\math3d.h(510,1): warning C4244:         [
+C:\Users\Admin\Desktop\ETGG4804\framework\math3d.h(510,1): warning C4244:             T=float
+C:\Users\Admin\Desktop\ETGG4804\framework\math3d.h(510,1): warning C4244:         ]
+C:\Users\Admin\Desktop\ETGG4804\framework\math3d.h(510): message :  while compiling class template member function 'vec3Base<float> vec3Base<float>::operator *(double) const'
+C:\Users\Admin\Desktop\ETGG4804\framework\math3d.h(742): message :  see reference to function template instantiation 'vec3Base<float> vec3Base<float>::operator *(double) const' being compiled
+C:\Users\Admin\Desktop\ETGG4804\framework\math3d.h(790): message :  see reference to class template instantiation 'vec3Base<float>' being compiled
+  Compile Shaders 1.vcxproj -> C:\Users\Admin\Desktop\ETGG4804\Compile Shaders 1\Debug\Compile Shaders 1.exe
