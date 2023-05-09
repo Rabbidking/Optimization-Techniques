@@ -1,0 +1,4 @@
+﻿  main.cpp
+C:\Users\Admin\Desktop\ETGG4804\SSE2\Image.h(45,29): warning C4244: 'argument': conversion from 'std::streamoff' to 'const unsigned int', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\SSE2\main.cpp(31,19): warning C4244: '=': conversion from 'double' to 'uint8_t', possible loss of data
+  SSE 2.vcxproj -> C:\Users\Admin\Desktop\ETGG4804\SSE2\Debug\SSE 2.exe

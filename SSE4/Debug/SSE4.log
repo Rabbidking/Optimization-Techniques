@@ -1,0 +1,4 @@
+﻿  silence.cpp
+C:\Users\Admin\Desktop\ETGG4804\SSE4\ymm.h(29,33): warning C4244: 'argument': conversion from 'uint16_t' to 'char', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\SSE4\Wave.h(93,24): warning C4244: 'initializing': conversion from 'std::streamoff' to 'size_t', possible loss of data
+  SSE4.vcxproj -> C:\Users\Admin\Desktop\ETGG4804\SSE4\Debug\SSE4.exe

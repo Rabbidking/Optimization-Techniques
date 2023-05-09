@@ -1,0 +1,4 @@
+﻿  main.cpp
+C:\Users\Admin\Desktop\ETGG4804\SSE5\ymm.h(29,33): warning C4244: 'argument': conversion from 'uint16_t' to 'char', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\SSE5\Image.h(45,29): warning C4244: 'argument': conversion from 'std::streamoff' to 'const unsigned int', possible loss of data
+  SSE5.vcxproj -> C:\Users\Admin\Desktop\ETGG4804\SSE5\Debug\SSE5.exe

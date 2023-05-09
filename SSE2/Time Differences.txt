@@ -1,0 +1,3 @@
+Non-SIMD time: 6680 usec
+
+SIMD time: 899 usec
