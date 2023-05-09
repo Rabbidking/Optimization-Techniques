@@ -1,0 +1,5 @@
+out-dithered-bilevel.png: 2 unique colors
+out-dithered-color-1.png: 2 unique colors
+out-dithered-color-16.png: 15 unique colors
+out-dithered-color-32.png: 30 unique colors
+out-greyscale.png: 249 unique colors

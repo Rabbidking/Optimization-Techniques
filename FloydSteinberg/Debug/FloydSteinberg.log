@@ -1,0 +1,65 @@
+﻿  floydsteinberg.cpp
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1180,26): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1193,50): warning C4305:  'argument': truncation from 'double' to 'T'
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1193,50): warning C4305:         with
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1193,50): warning C4305:         [
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1193,50): warning C4305:             T=float
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1193,50): warning C4305:         ]
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1257,22): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1267,50): warning C4305:  'argument': truncation from 'double' to 'T'
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1267,50): warning C4305:         with
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1267,50): warning C4305:         [
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1267,50): warning C4305:             T=float
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1267,50): warning C4305:         ]
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1322,22): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1329,40): warning C4305:  'argument': truncation from 'double' to 'T'
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1329,40): warning C4305:         with
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1329,40): warning C4305:         [
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1329,40): warning C4305:             T=float
+C:\Users\Admin\Desktop\ETGG4804\lab 2\math3d.h(1329,40): warning C4305:         ]
+C:\Users\Admin\Desktop\ETGG4804\lab 2\Image.h(44,29): warning C4244:  'argument': conversion from 'std::streamoff' to 'const unsigned int', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(34,40): warning C4244:  '+=': conversion from 'T' to 'T', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(34,40): warning C4244:         with
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(34,40): warning C4244:         [
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(34,40): warning C4244:             T=float
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(34,40): warning C4244:         ]
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(34,40): warning C4244:         and
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(34,40): warning C4244:         [
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(34,40): warning C4244:             T=int32_t
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(34,40): warning C4244:         ]
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(40,48): warning C4244:  '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(40,48): warning C4244:         with
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(40,48): warning C4244:         [
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(40,48): warning C4244:             T=float
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(40,48): warning C4244:         ]
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(41,48): warning C4244:  '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(41,48): warning C4244:         with
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(41,48): warning C4244:         [
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(41,48): warning C4244:             T=float
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(41,48): warning C4244:         ]
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(44,48): warning C4244:  '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(44,48): warning C4244:         with
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(44,48): warning C4244:         [
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(44,48): warning C4244:             T=float
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(44,48): warning C4244:         ]
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(45,42): warning C4244:  '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(45,42): warning C4244:         with
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(45,42): warning C4244:         [
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(45,42): warning C4244:             T=float
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(45,42): warning C4244:         ]
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(83,49): warning C4244:  'argument': conversion from 'T' to 'uint8_t', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(83,49): warning C4244:         with
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(83,49): warning C4244:         [
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(83,49): warning C4244:             T=float
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(83,49): warning C4244:         ]
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(83,42): warning C4244:  'argument': conversion from 'T' to 'uint8_t', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(83,42): warning C4244:         with
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(83,42): warning C4244:         [
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(83,42): warning C4244:             T=float
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(83,42): warning C4244:         ]
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(83,35): warning C4244:  'argument': conversion from 'T' to 'uint8_t', possible loss of data
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(83,35): warning C4244:         with
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(83,35): warning C4244:         [
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(83,35): warning C4244:             T=float
+C:\Users\Admin\Desktop\ETGG4804\lab 2\floydsteinberg.cpp(83,35): warning C4244:         ]
+  FloydSteinberg.vcxproj -> C:\Users\Admin\Desktop\ETGG4804\FloydSteinberg\Debug\FloydSteinberg.exe
